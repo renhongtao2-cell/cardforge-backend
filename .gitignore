@@ -35,4 +35,8 @@ STRIPE_*
 npm-debug.log*
 
 # Coverage
+<<<<<<< HEAD
 coverage/
+=======
+coverage/
+>>>>>>> 22652ddea2dcf88cc3a38bb9eaad33ff332f5d86
