@@ -2,13 +2,12 @@
 
 WORKDIR /app
 
-# Install system dependencies for Pillow
-RUN apt-get update && apt-get install -y \
+# Install system dependencies for Pillow (skip fonts to save memory)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libffi-dev \
     libjpeg-dev \
     zlib1g-dev \
-    ttf-mscorefonts-installer \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
@@ -25,4 +24,4 @@ RUN mkdir -p /app/uploads
 
 EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
