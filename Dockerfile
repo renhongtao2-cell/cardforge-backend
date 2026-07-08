@@ -1,8 +1,8 @@
-﻿FROM python:3.12-slim AS backend
+﻿FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install system dependencies for Pillow (skip fonts to save memory)
+# Install system dependencies for Pillow
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libffi-dev \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
+# Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
